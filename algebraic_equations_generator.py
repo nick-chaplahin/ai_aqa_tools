@@ -328,8 +328,9 @@ class AlgebraicEquationGenerator:
         self._service_log(f"Generated action: {action}", "extend_equation", 4)
         action_description = self._service_get_operation_description(action)
         if action == "add":
-            left = left + extend
-            right = right + extend
+            if self.positive_flag:
+                left = left + extend
+                right = right + extend
             left_str = f"{left_str} {action_description} {extend_str}"
             right_str = f"{right_str} {action_description} {extend_str}"
             self.resolve_path.insert(0, f"- Subtract from both parts of equation {extend}")
@@ -337,8 +338,9 @@ class AlgebraicEquationGenerator:
         if action == "sub":
             # Numerator = numerator + denominator * expression
             # Denominator  = denominator
-            left = left - extend
-            right = right - extend
+            if self.positive_flag:
+                left = left - extend
+                right = right - extend
             left_str = f"{left_str} {action_description} {extend_str}"
             right_str = f"{right_str} {action_description} {extend_str}"
             self.resolve_path.insert(0, f"- Add to both parts of equation {extend}")
@@ -348,8 +350,9 @@ class AlgebraicEquationGenerator:
                 left_str = f"({left_str})"
             if self._service_not_val_or_symbol(right):
                 right_str = f"({right_str})"
-            left = left * extend
-            right = right * extend
+            if self.positive_flag:
+                left = left * extend
+                right = right * extend
             left_str = f"{left_str} {action_description} {extend_str}"
             right_str = f"{right_str} {action_description} {extend_str}"
             self.resolve_path.insert(0, f"- Divide both parts of equation by {extend}")

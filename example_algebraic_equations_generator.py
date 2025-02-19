@@ -31,7 +31,14 @@ print(f"\n\n============================== EQUATIONS UPDATED ===================
 equation.set_expression_length((3, 3))
 equation.set_complication_depth((3, 3))
 equation.set_symbols_density(0.7)
-symbols_oper = {sympy.Symbol("x"): 1.0}
+operation_text_operands = {
+    'add': ['add', 'plus', '+'],
+    'sub': ['sub', 'minus', '-'],
+    'multiply': ['multiply by', 'mul', '*', 'x'],
+    'divide': ['divide by', 'div', ':', '/'],
+    'power': [' power to ', '^', '**'],
+}
+equation.set_operation_operands(operation_text_operands)
 for _ in range(20):
     equation.generate_equation()
     init_equation = equation.get_init_expression()
