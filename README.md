@@ -26,6 +26,7 @@ Requirements:
 Issues:
    - sympy.solve can hang time-to-time with very complex equations. For a start - try smaller ranges and complication depth.
    - sympy.latex for "general" types of equations can crash if a fraction is in params. To display LaTeX representation of the equation use sympy.latex(sympy.simplify(equation)). See example_algebraic_equation_generator for working examples.
+   - Can generate broken algebraic equations time-to-time. This is uder investigation, for now - do not use equations that have "nan" on the right side.
 
 Recommended:
    - If you can replace the sympy module by one you use  - do it.
