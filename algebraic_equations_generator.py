@@ -329,7 +329,6 @@ class AlgebraicEquationGenerator:
         action_description = self._service_get_operation_description(action)
         if action == "add":
             left = left + extend
-            print(f"Left: {left}")
             right = right + extend
             left_str = f"{left_str} {action_description} {extend_str}"
             right_str = f"{right_str} {action_description} {extend_str}"
@@ -339,7 +338,6 @@ class AlgebraicEquationGenerator:
             # Numerator = numerator + denominator * expression
             # Denominator  = denominator
             left = left - extend
-            print(f"Left: {left}")
             right = right - extend
             left_str = f"{left_str} {action_description} {extend_str}"
             right_str = f"{right_str} {action_description} {extend_str}"
@@ -351,7 +349,6 @@ class AlgebraicEquationGenerator:
             if self._service_not_val_or_symbol(right):
                 right_str = f"({right_str})"
             left = left * extend
-            print(f"Left: {left}")
             right = right * extend
             left_str = f"{left_str} {action_description} {extend_str}"
             right_str = f"{right_str} {action_description} {extend_str}"
@@ -365,7 +362,6 @@ class AlgebraicEquationGenerator:
             if self.positive_flag:
                 try:
                     left = left / extend
-                    print(f"Left: {left}")
                     right = right / extend
                 except ZeroDivisionError:
                     self.positive_flag = False
@@ -386,7 +382,6 @@ class AlgebraicEquationGenerator:
             if self.positive_flag:
                 try:
                     left = left ** extend
-                    print(f"Left: {left}")
                     right = right ** extend
                 except ZeroDivisionError:
                     self.positive_flag = False

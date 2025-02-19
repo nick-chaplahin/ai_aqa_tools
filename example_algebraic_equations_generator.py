@@ -38,4 +38,4 @@ for _ in range(20):
     print(f"Solution/initial equation: {init_equation[0]} = {init_equation[1]}")
     print(f"Equation: {equation.get_equation()[0]} = {equation.get_equation()[1]}")
     print(f"Description of equation: {equation.get_string_equation()[0]} = {equation.get_string_equation()[1]}")
-
+    print("\n")
