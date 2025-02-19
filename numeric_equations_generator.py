@@ -3,6 +3,7 @@ Automatic complex equations generator.
 Author: Nick  Chaplahin, 2025
 Copyright: Nick Chaplahin
 
+License: MIT
 
 Configurable:
 - number of values in equation
