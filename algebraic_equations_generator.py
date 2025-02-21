@@ -63,7 +63,7 @@ class AlgebraicEquationGenerator:
             'sub': 0.25,
             'multiply': 0.15,
             'divide': 0.15,
-            'power': 0.1
+            'power': 0.05
         }
         self.operation_operands = {
             'add': '+',
@@ -551,15 +551,17 @@ class AlgebraicEquationGenerator:
             self.init_expression = (left, right)
             self.init_expression_str = (left_str, right_str)
         else:
-            # <TBDF> NOT SUPPORTED YET
+            # <TBD> NOT SUPPORTED YET
             left, right = self.init_expression
             left_str, right_str = self.init_expression_str
         self._service_log(f"Initial left: {left}", "generate_equation", 2)
         self._service_log(f"Initial right: {right}", "generate_equation", 2)
         self._service_log(f"Initial left_str: {left_str}", "generate_equation", 2)
         self._service_log(f"Initial right_str: {right_str}", "generate_equation", 2)
+        # <TBD> Add ability to choose the Symbol to solve by
+        symbols = list(self.symbol_probabilities.keys())
         try:
-            self.result = sympy.solve(left - right, dict=True)
+            self.result = sympy.solveset(left - right, symbols[0])
         except ValueError:
             self.result = 0
             self.positive_flag = False
@@ -572,10 +574,10 @@ class AlgebraicEquationGenerator:
             self.error_type = "NotImplementedError"
             self._service_log(f"Error type NotImplementedError for solving init expression: {left} - {right} ",
                               "generate_equation", 1)
-
-        actual_depth = random.randint(self.complication_depth[0], self.complication_depth[1])
-        for _ in range(actual_depth):
-            left, right, left_str, right_str = self._service_extend_equation(left, right, left_str, right_str)
+        if self.positive_flag:
+            actual_depth = random.randint(self.complication_depth[0], self.complication_depth[1])
+            for _ in range(actual_depth):
+                left, right, left_str, right_str = self._service_extend_equation(left, right, left_str, right_str)
         if not self.positive_flag:
             left = 0
             right = 0
